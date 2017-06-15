@@ -234,7 +234,6 @@ public class AceJumpAction extends EmacsIdeasAction {
     }
 
     public void showNewMarkersPanel(ArrayList<MarkersPanel> markersPanels) {
-        System.out.println("test");
         if (_markersPanels != null) {
             for (MarkersPanel markersPanel : _markersPanels) {
                 Container parent = markersPanel.getParent();

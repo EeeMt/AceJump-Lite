@@ -36,19 +36,29 @@ public class MarkersPanel extends JComponent {
 
     @Override
     public void paint(Graphics g) {
-        Font font = _editor.getColorsScheme().getFont(EditorFontType.BOLD);
+        //Font font = _editor.getColorsScheme().getFont(EditorFontType.BOLD);
+        Font font = _editor.getColorsScheme().getFont(EditorFontType.PLAIN);
         FontMetrics fontMetrics = _editor.getContentComponent().getFontMetrics(font);
 
         g.setFont(font);
         drawPanelBackground(g);
 
         HashSet<JOffset> firstJumpOffsets = new HashSet<JOffset>();
+
+        // convert to upper case according to setting
+        if (_config._toUpperCase){
+            for (Marker marker : _markerCollection.values()) {
+                String markerStr = marker.getMarker();
+                String _markerStr = markerStr.toUpperCase();
+                marker.setMarker(_markerStr);
+            }
+        }
+
         for (Marker marker : _markerCollection.values()) {
             if (marker.getOffset().editor != _editor) continue;
 
             for (JOffset offset : marker.getOffsets()) {
                 firstJumpOffsets.add(offset);
-
                 Rectangle2D fontRect = fontMetrics.getStringBounds(String.valueOf(marker.getMarkerChar()), g);
                 drawBackground(g, __x(offset), __y(offset), _config.getFirstJumpBackground(), fontRect);
                 drawMarkerChar(g, __x(offset), __y(offset) + font.getSize() * 0.9, marker.getMarkerChar(), _config.getFirstJumpForeground());

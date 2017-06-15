@@ -18,6 +18,7 @@ public class IdeaConfigurable implements Configurable {
     private JCheckBox _needSelectTextAfterJump;
     private JCheckBox _jumpBehind;
     private ColorPanel _panelBackground;
+    private JCheckBox _toUpperCase;
 
     final PluginConfig config = ServiceManager.getService(PluginConfig.class);
 
@@ -41,6 +42,7 @@ public class IdeaConfigurable implements Configurable {
         _panelBackground.setSelectedColor(config.getPanelBackground());
         _needSelectTextAfterJump.setSelected(config._needSelectTextAfterJump);
         _jumpBehind.setSelected(config._jumpBehind);
+        _toUpperCase.setSelected(config._toUpperCase);
     }
 
     @Nullable
@@ -58,7 +60,8 @@ public class IdeaConfigurable implements Configurable {
                 || _secondJumpForeground.getSelectedColor() != config.getSecondJumpForeground()
                 || _panelBackground.getSelectedColor() != config.getPanelBackground()
                 || _needSelectTextAfterJump.isSelected() != config._needSelectTextAfterJump
-                || _jumpBehind.isSelected() != config._jumpBehind;
+                || _jumpBehind.isSelected() != config._jumpBehind
+                || _toUpperCase.isSelected() != config._toUpperCase;
     }
 
     @Override
@@ -74,6 +77,7 @@ public class IdeaConfigurable implements Configurable {
         config._panelBackground = _panelBackground.getSelectedColor().getRGB();
         config._needSelectTextAfterJump = _needSelectTextAfterJump.isSelected();
         config._jumpBehind = _jumpBehind.isSelected();
+        config._toUpperCase = _toUpperCase.isSelected();
     }
 
     @Override

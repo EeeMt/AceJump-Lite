@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ShowMarkersRunnable implements Runnable {
     public static final char INFINITE_JUMP_CHAR = '/';
-    private static final String MARKER_CHARSET =     "asdfjeghiybcmnopqrtuvwkl";   //TODO: customizable
+    private static final String MARKER_CHARSET = "asdfjeghiybcmnopqrtuvwkl";   //TODO: customizable
     private final List<JOffset> _offsets;
     private final AceJumpAction _action;
     private final Editor _editor;
@@ -57,7 +57,7 @@ public class ShowMarkersRunnable implements Runnable {
     }
 
     private void createSingleJumpMarkers(int singleJumpCount) {
-        for (int i = 0; i < singleJumpCount ; i++) {
+        for (int i = 0; i < singleJumpCount; i++) {
             String marker = String.valueOf(MARKER_CHARSET.charAt(i));
             _markerCollection.addMarker(marker, _offsets.get(i));
         }
@@ -66,7 +66,7 @@ public class ShowMarkersRunnable implements Runnable {
     private void createMultipleJumpMarkers(int singleJumpCount) {
         int i = singleJumpCount;
 
-        for (;i < _offsets.size(); i++) {
+        for (; i < _offsets.size(); i++) {
             int group = (i - singleJumpCount) / MARKER_CHARSET.length();
             int markerCharIndex = singleJumpCount + group;
 

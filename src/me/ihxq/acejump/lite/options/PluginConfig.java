@@ -19,13 +19,14 @@ import java.awt.*;
         }
 )
 public class PluginConfig implements PersistentStateComponent<PluginConfig> {
-    public int _firstJumpBackground = Color.blue.getRGB();
-    public int _firstJumpForeground = Color.white.getRGB();
-    public int _secondJumpBackground = Color.red.getRGB();
-    public int _secondJumpForeground = Color.white.getRGB();
-    public boolean _needSelectTextAfterJump = true;
+    int _firstJumpBackground = Color.blue.getRGB();
+    int _firstJumpForeground = Color.white.getRGB();
+    int _secondJumpBackground = Color.red.getRGB();
+    int _secondJumpForeground = Color.white.getRGB();
+    boolean _needSelectTextAfterJump = true;
     public boolean _jumpBehind = true;
-    public int _panelBackground = Color.lightGray.getRGB();
+    int _panelBackground = Color.lightGray.getRGB();
+    public boolean _toUpperCase = true;
 
     public Color getFirstJumpBackground() {
         return new Color(_firstJumpBackground);

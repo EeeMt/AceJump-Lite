@@ -27,6 +27,10 @@ public class Marker {
         return _marker;
     }
 
+    public void setMarker(String _marker) {
+        this._marker = _marker;
+    }
+
     public JOffset getOffset() {
         return _offsets.get(0);
     }
