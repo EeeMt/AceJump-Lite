@@ -19,8 +19,10 @@ public class IdeaConfigurable implements Configurable {
     private JCheckBox _jumpBehind;
     private ColorPanel _panelBackground;
     private JCheckBox _toUpperCase;
+    private JComboBox _fontType;
+    private JSlider _bgOpacity;
 
-    final PluginConfig config = ServiceManager.getService(PluginConfig.class);
+    private final PluginConfig config = ServiceManager.getService(PluginConfig.class);
 
     @Nls
     @Override
@@ -43,6 +45,8 @@ public class IdeaConfigurable implements Configurable {
         _needSelectTextAfterJump.setSelected(config._needSelectTextAfterJump);
         _jumpBehind.setSelected(config._jumpBehind);
         _toUpperCase.setSelected(config._toUpperCase);
+        _fontType.setSelectedItem(config._fontType);
+        _bgOpacity.setValue(config._bgOpacity);
     }
 
     @Nullable
@@ -54,6 +58,7 @@ public class IdeaConfigurable implements Configurable {
 
     @Override
     public boolean isModified() {
+        System.out.println(_fontType.getSelectedItem());
         return _firstJumpBackground.getSelectedColor() != config.getFirstJumpBackground()
                 || _firstJumpForeground.getSelectedColor() != config.getFirstJumpForeground()
                 || _secondJumpBackground.getSelectedColor() != config.getSecondJumpBackground()
@@ -61,6 +66,8 @@ public class IdeaConfigurable implements Configurable {
                 || _panelBackground.getSelectedColor() != config.getPanelBackground()
                 || _needSelectTextAfterJump.isSelected() != config._needSelectTextAfterJump
                 || _jumpBehind.isSelected() != config._jumpBehind
+                || _fontType.getSelectedItem() != config._fontType
+                || _bgOpacity.getValue() != config._bgOpacity
                 || _toUpperCase.isSelected() != config._toUpperCase;
     }
 
@@ -78,6 +85,8 @@ public class IdeaConfigurable implements Configurable {
         config._needSelectTextAfterJump = _needSelectTextAfterJump.isSelected();
         config._jumpBehind = _jumpBehind.isSelected();
         config._toUpperCase = _toUpperCase.isSelected();
+        config._fontType = (String) _fontType.getSelectedItem();
+        config._bgOpacity =  _bgOpacity.getValue();
     }
 
     @Override

@@ -27,6 +27,8 @@ public class PluginConfig implements PersistentStateComponent<PluginConfig> {
     public boolean _jumpBehind = true;
     int _panelBackground = Color.lightGray.getRGB();
     public boolean _toUpperCase = true;
+    public String _fontType = "Bold";
+    public int _bgOpacity = 30;
 
     public Color getFirstJumpBackground() {
         return new Color(_firstJumpBackground);

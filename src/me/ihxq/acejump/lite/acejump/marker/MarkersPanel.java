@@ -37,7 +37,19 @@ public class MarkersPanel extends JComponent {
     @Override
     public void paint(Graphics g) {
         //Font font = _editor.getColorsScheme().getFont(EditorFontType.BOLD);
-        Font font = _editor.getColorsScheme().getFont(EditorFontType.PLAIN);
+        EditorFontType fontType;
+        switch (_config._fontType) {
+            case "Bold":
+                fontType = EditorFontType.BOLD;
+                break;
+            case "Plain":
+                fontType = EditorFontType.PLAIN;
+                break;
+            default:
+                fontType = EditorFontType.BOLD;
+                break;
+        }
+        Font font = _editor.getColorsScheme().getFont(fontType);
         FontMetrics fontMetrics = _editor.getContentComponent().getFontMetrics(font);
 
         g.setFont(font);
@@ -46,7 +58,7 @@ public class MarkersPanel extends JComponent {
         HashSet<JOffset> firstJumpOffsets = new HashSet<JOffset>();
 
         // convert to upper case according to setting
-        if (_config._toUpperCase){
+        if (_config._toUpperCase) {
             for (Marker marker : _markerCollection.values()) {
                 String markerStr = marker.getMarker();
                 String _markerStr = markerStr.toUpperCase();
@@ -110,7 +122,8 @@ public class MarkersPanel extends JComponent {
     }
 
     private void drawPanelBackground(Graphics g) {
-        ((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        float bgOpacity = _config._bgOpacity * 1.0f / 100;
+        ((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, bgOpacity));
         g.setColor(PANEL_BACKGROUND_COLOR);
         g.fillRect(0, 0, (int) this.getBounds().getWidth(), (int) this.getBounds().getHeight());
         ((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
