@@ -44,6 +44,14 @@ public class AceJumpAction extends EmacsIdeasAction {
         _offsetsFinder = new CharOffsetsFinder();
         _isCalledFromOtherAction = true;
         this.actionPerformed(e);
+
+        ArrayList<Editor> editors = getEditors();
+        _markersPanels = new ArrayList<>();
+        for (Editor editor : _editors) {
+            MarkersPanel markersPanel = new MarkersPanel(editor, getMarkerCollection());
+            _markersPanels.add(markersPanel);
+        }
+        showNewMarkersPanel(_markersPanels);
     }
 
     @Override
@@ -205,15 +213,7 @@ public class AceJumpAction extends EmacsIdeasAction {
             _showMarkersKeyListener = null;
         }
 
-        if (_markersPanels != null) {
-            for (MarkersPanel markersPanel : _markersPanels) {
-                Container parent = markersPanel.getParent();
-                if (parent != null) {
-                    parent.remove(markersPanel);
-                    parent.repaint();
-                }
-            }
-        }
+        repaintParent();
 
         for (Editor editor : _editors) {
             editor.getComponent().repaint();
@@ -234,6 +234,17 @@ public class AceJumpAction extends EmacsIdeasAction {
     }
 
     public void showNewMarkersPanel(ArrayList<MarkersPanel> markersPanels) {
+        repaintParent();
+
+        _markersPanels = markersPanels;
+
+        for (MarkersPanel markersPanel : markersPanels) {
+            markersPanel._editor.getContentComponent().add(markersPanel);
+            markersPanel._editor.getContentComponent().repaint();
+        }
+    }
+
+    private void repaintParent() {
         if (_markersPanels != null) {
             for (MarkersPanel markersPanel : _markersPanels) {
                 Container parent = markersPanel.getParent();
@@ -242,13 +253,6 @@ public class AceJumpAction extends EmacsIdeasAction {
                     parent.repaint();
                 }
             }
-        }
-
-        _markersPanels = markersPanels;
-
-        for (MarkersPanel markersPanel : markersPanels) {
-            markersPanel._editor.getContentComponent().add(markersPanel);
-            markersPanel._editor.getContentComponent().repaint();
         }
     }
 

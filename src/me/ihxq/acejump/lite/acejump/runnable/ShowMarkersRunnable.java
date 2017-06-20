@@ -1,11 +1,13 @@
 package me.ihxq.acejump.lite.acejump.runnable;
 
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import me.ihxq.acejump.lite.acejump.AceJumpAction;
 import me.ihxq.acejump.lite.acejump.marker.JOffset;
 import me.ihxq.acejump.lite.acejump.marker.MarkerCollection;
 import me.ihxq.acejump.lite.acejump.marker.MarkersPanel;
+import me.ihxq.acejump.lite.options.PluginConfig;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,12 +15,17 @@ import java.util.List;
 
 public class ShowMarkersRunnable implements Runnable {
     private static final char INFINITE_JUMP_CHAR = '/';
-    private static final String MARKER_CHARSET = "asdfjeghiybcmnopqrtuvwkl";   //TODO: customizable
+    private static final PluginConfig _config = ServiceManager.getService(PluginConfig.class);
+    // private static final String MARKER_CHARSET = "asdfjeghiybcmnopqrtuvwkl";
     private final List<JOffset> _offsets;
     private final AceJumpAction _action;
     private final Editor _editor;
     private final ArrayList<Editor> _editors;
     private MarkerCollection _markerCollection;
+
+    private String getMarkerCharsets() {
+        return  _config._markersCharsets;
+    }
 
     public ShowMarkersRunnable(List<JOffset> offsets, AceJumpAction currentExecutingAction) {
         _offsets = offsets;
@@ -39,7 +46,7 @@ public class ShowMarkersRunnable implements Runnable {
         sortOffsetsToImprovePriorityOfLineEnd();
 
         int twiceJumpGroupCount = calcTwiceJumpGroupCount();
-        int singleJumpCount = Math.min(MARKER_CHARSET.length() - twiceJumpGroupCount, _offsets.size());
+        int singleJumpCount = Math.min(getMarkerCharsets().length() - twiceJumpGroupCount, _offsets.size());
 
         createSingleJumpMarkers(singleJumpCount);
         if (twiceJumpGroupCount > 0) {
@@ -57,7 +64,7 @@ public class ShowMarkersRunnable implements Runnable {
 
     private void createSingleJumpMarkers(int singleJumpCount) {
         for (int i = 0; i < singleJumpCount; i++) {
-            String marker = String.valueOf(MARKER_CHARSET.charAt(i));
+            String marker = String.valueOf(getMarkerCharsets().charAt(i));
             _markerCollection.addMarker(marker, _offsets.get(i));
         }
     }
@@ -66,15 +73,15 @@ public class ShowMarkersRunnable implements Runnable {
         int i = singleJumpCount;
 
         for (; i < _offsets.size(); i++) {
-            int group = (i - singleJumpCount) / MARKER_CHARSET.length();
+            int group = (i - singleJumpCount) / getMarkerCharsets().length();
             int markerCharIndex = singleJumpCount + group;
 
-            if (markerCharIndex > MARKER_CHARSET.length() - 1) {
+            if (markerCharIndex > getMarkerCharsets().length() - 1) {
                 break;
             }
 
-            char markerChar = MARKER_CHARSET.charAt(markerCharIndex);
-            char secondJumpMarkerChar = MARKER_CHARSET.charAt((i - singleJumpCount) % MARKER_CHARSET.length());
+            char markerChar = getMarkerCharsets().charAt(markerCharIndex);
+            char secondJumpMarkerChar = getMarkerCharsets().charAt((i - singleJumpCount) % getMarkerCharsets().length());
 
             String marker = "" + markerChar + secondJumpMarkerChar;
             _markerCollection.addMarker(marker, _offsets.get(i));
@@ -90,7 +97,7 @@ public class ShowMarkersRunnable implements Runnable {
     }
 
     private int calcTwiceJumpGroupCount() {
-        int makerCharSetSize = MARKER_CHARSET.length();
+        int makerCharSetSize = getMarkerCharsets().length();
 
         for (int groupsNeedMultipleJump = 0; groupsNeedMultipleJump <= makerCharSetSize; groupsNeedMultipleJump++) {
             int oneJumpMarkerCount = makerCharSetSize - groupsNeedMultipleJump;

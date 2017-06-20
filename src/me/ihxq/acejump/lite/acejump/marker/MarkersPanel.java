@@ -11,9 +11,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 
 public class MarkersPanel extends JComponent {
-    final PluginConfig _config = ServiceManager.getService(PluginConfig.class);
+    private final PluginConfig _config = ServiceManager.getService(PluginConfig.class);
 
-    public Color PANEL_BACKGROUND_COLOR = _config.getPanelBackground();
+    private Color PANEL_BACKGROUND_COLOR = _config.getPanelBackground();
     public Editor _editor;
 
     private MarkerCollection _markerCollection;
@@ -55,9 +55,9 @@ public class MarkersPanel extends JComponent {
         g.setFont(font);
         drawPanelBackground(g);
 
-        HashSet<JOffset> firstJumpOffsets = new HashSet<JOffset>();
+        HashSet<JOffset> firstJumpOffsets = new HashSet<>();
 
-        // convert to upper case according to setting
+        // convert to upper case according to the setting
         if (_config._toUpperCase) {
             for (Marker marker : _markerCollection.values()) {
                 String markerStr = marker.getMarker();
@@ -85,7 +85,13 @@ public class MarkersPanel extends JComponent {
             for (JOffset offset : marker.getOffsets()) {
                 Rectangle2D fontRect = fontMetrics.getStringBounds(String.valueOf(marker.getMarker().charAt(1)), g);
                 drawBackground(g, __x(offset) + fontRect.getWidth(), __y(offset), _config.getSecondJumpBackground(), fontRect);
-                drawMarkerChar(g, __x(offset) + fontRect.getWidth(), __y(offset) + font.getSize() * 0.9, marker.getMarker().charAt(1), _config.getSecondJumpForeground());
+                drawMarkerChar(
+                        g,
+                        __x(offset) + fontRect.getWidth(),
+                        __y(offset) + font.getSize() * 0.9,
+                        marker.getMarker().charAt(1),
+                        _config.getSecondJumpForeground()
+                );
             }
         }
 

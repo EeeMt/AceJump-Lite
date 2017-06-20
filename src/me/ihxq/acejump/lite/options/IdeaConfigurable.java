@@ -22,13 +22,14 @@ public class IdeaConfigurable implements Configurable {
     private JComboBox _fontType;
     private JSlider _bgOpacity;
     private JLabel _bgOpacityValue;
+    private JTextField _markersCharsets;
 
     private final PluginConfig config = ServiceManager.getService(PluginConfig.class);
 
     @Nls
     @Override
     public String getDisplayName() {
-        return "emacsIDEAs";
+        return "AceJump-Lite";
     }
 
     @Nullable
@@ -48,6 +49,7 @@ public class IdeaConfigurable implements Configurable {
         _toUpperCase.setSelected(config._toUpperCase);
         _fontType.setSelectedItem(config._fontType);
         _bgOpacity.setValue(config._bgOpacity);
+        _markersCharsets.setText(config._markersCharsets);
     }
 
     @Nullable
@@ -72,6 +74,7 @@ public class IdeaConfigurable implements Configurable {
                 || _jumpBehind.isSelected() != config._jumpBehind
                 || _fontType.getSelectedItem() != config._fontType
                 || _bgOpacity.getValue() != config._bgOpacity
+                || !_markersCharsets.getText().equals(config._markersCharsets)
                 || _toUpperCase.isSelected() != config._toUpperCase;
     }
 
@@ -100,6 +103,7 @@ public class IdeaConfigurable implements Configurable {
         config._toUpperCase = _toUpperCase.isSelected();
         config._fontType = (String) _fontType.getSelectedItem();
         config._bgOpacity = _bgOpacity.getValue();
+        config._markersCharsets = _markersCharsets.getText();
     }
 
     @Override

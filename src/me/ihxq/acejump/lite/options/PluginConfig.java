@@ -30,6 +30,7 @@ public class PluginConfig implements PersistentStateComponent<PluginConfig> {
     public boolean _toUpperCase = true;
     public String _fontType = "Bold";
     public int _bgOpacity = 30;
+    public String _markersCharsets = "asdfjeghiybcmnopqrtuvwkl";
 
     public Color getFirstJumpBackground() {
         return new JBColor(new Color(_firstJumpBackground), new Color(_firstJumpBackground));
