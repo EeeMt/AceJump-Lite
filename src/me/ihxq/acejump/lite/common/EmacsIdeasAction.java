@@ -18,15 +18,15 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public abstract class EmacsIdeasAction extends AnAction {
-    protected volatile boolean _isStillRunning = false;
+    private volatile boolean _isStillRunning = false;
     protected EmacsIdeasAction _action;
     protected Editor _editor;
     protected ArrayList<Editor> _editors;
     protected JComponent _contentComponent;
     protected Document _document;
-    protected KeyListener[] _keyListeners;
-    protected AnActionEvent _event;
-    protected Project _project;
+    private KeyListener[] _keyListeners;
+    private AnActionEvent _event;
+    private Project _project;
 
     public void cleanupSetupsInAndBackToNormalEditingMode() {
         restoreOldKeyListeners();
@@ -34,13 +34,13 @@ public abstract class EmacsIdeasAction extends AnAction {
         _isStillRunning = false;
     }
 
-    protected void restoreOldKeyListeners() {
+    private void restoreOldKeyListeners() {
         for (KeyListener kl : _keyListeners) {
             _contentComponent.addKeyListener(kl);
         }
     }
 
-    public boolean initAction(AnActionEvent e) {
+    protected boolean initAction(AnActionEvent e) {
         if (getEditorFrom(e) == null) {
             return false;
         }
@@ -79,8 +79,9 @@ public abstract class EmacsIdeasAction extends AnAction {
         _editors = collect_active_editors(e);
     }
 
+    @SuppressWarnings("all")
     private ArrayList<Editor> collect_active_editors(AnActionEvent e) {
-        ArrayList<Editor> editors = new ArrayList<Editor>();
+        ArrayList<Editor> editors = new ArrayList<>();
 
         final Project project = e.getData(CommonDataKeys.PROJECT);
         final FileEditorManagerEx fileEditorManager = FileEditorManagerEx.getInstanceEx(project);
@@ -105,7 +106,7 @@ public abstract class EmacsIdeasAction extends AnAction {
         _project = getProjectFrom(e);
     }
 
-    protected void disableAllExistingKeyListeners() {
+    private void disableAllExistingKeyListeners() {
         _keyListeners = _contentComponent.getKeyListeners();
         for (KeyListener kl : _keyListeners) {
             _contentComponent.removeKeyListener(kl);

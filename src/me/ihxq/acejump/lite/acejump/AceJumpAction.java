@@ -31,16 +31,16 @@ public class AceJumpAction extends EmacsIdeasAction {
     private ArrayList<MarkersPanel> _markersPanels;
     private KeyListener _showMarkersKeyListener;
     private KeyListener _jumpToMarkerKeyListener;
-    private Stack<CommandAroundJump> _commandsAroundJump = new Stack<CommandAroundJump>();
+    private Stack<CommandAroundJump> _commandsAroundJump = new Stack<>();
     private static volatile AceJumpAction _instance;
     private boolean _isCalledFromOtherAction; //TODO
     private OffsetsFinder _offsetsFinder = new WordOffsetsFinder();
 
-    public AceJumpAction() {
+    private AceJumpAction() {
         _instance = this;
     }
 
-    public void performAction(AnActionEvent e) {
+    void performAction(AnActionEvent e) {
         _offsetsFinder = new CharOffsetsFinder();
         _isCalledFromOtherAction = true;
         this.actionPerformed(e);
@@ -159,15 +159,15 @@ public class AceJumpAction extends EmacsIdeasAction {
     }
 
     private List<JOffset> getOffsetsOfCharInVisibleArea(char key) {
-        if (_markers.get(key) != null) {
-            return _markers.get(key).getOffsets();
+        if (_markers.get(String.valueOf(key)) != null) {
+            return _markers.get(String.valueOf(key)).getOffsets();
         }
 
         return findOffsetsInEditors(key);
     }
 
     private List<JOffset> findOffsetsInEditors(char key) {
-        List<JOffset> joffsets = new ArrayList<JOffset>();
+        List<JOffset> joffsets = new ArrayList<>();
 
         for (Editor editor : _editors) {
             List<Integer> offsets = _offsetsFinder.getOffsets(key, editor, _editor);
@@ -219,7 +219,7 @@ public class AceJumpAction extends EmacsIdeasAction {
             editor.getComponent().repaint();
         }
 
-        _commandsAroundJump = new Stack<CommandAroundJump>();
+        _commandsAroundJump = new Stack<>();
         _offsetsFinder = new WordOffsetsFinder();
         _isCalledFromOtherAction = false;
         super.cleanupSetupsInAndBackToNormalEditingMode();
@@ -256,18 +256,18 @@ public class AceJumpAction extends EmacsIdeasAction {
         return _markers;
     }
 
-    public static AceJumpAction getInstance() {
+    static AceJumpAction getInstance() {
         if (_instance == null) {
             _instance = new AceJumpAction();
         }
         return _instance;
     }
 
-    public void addCommandAroundJump(CommandAroundJump commandAroundJump) {
+    void addCommandAroundJump(CommandAroundJump commandAroundJump) {
         _commandsAroundJump.push(commandAroundJump);
     }
 
-    public boolean isCalledFromOtherAction() {
+    private boolean isCalledFromOtherAction() {
         return _isCalledFromOtherAction;
     }
 }

@@ -21,6 +21,7 @@ public class IdeaConfigurable implements Configurable {
     private JCheckBox _toUpperCase;
     private JComboBox _fontType;
     private JSlider _bgOpacity;
+    private JLabel _bgOpacityValue;
 
     private final PluginConfig config = ServiceManager.getService(PluginConfig.class);
 
@@ -59,6 +60,9 @@ public class IdeaConfigurable implements Configurable {
     @Override
     public boolean isModified() {
         System.out.println(_fontType.getSelectedItem());
+        System.out.println(_bgOpacity.getValue());
+        System.out.println(_bgOpacity.getChangeListeners().length);
+        _bgOpacityValue.setText(_bgOpacity.getValue() + "%");
         return _firstJumpBackground.getSelectedColor() != config.getFirstJumpBackground()
                 || _firstJumpForeground.getSelectedColor() != config.getFirstJumpForeground()
                 || _secondJumpBackground.getSelectedColor() != config.getSecondJumpBackground()
@@ -76,17 +80,26 @@ public class IdeaConfigurable implements Configurable {
         if (!isModified()) {
             return;
         }
-
-        config._firstJumpBackground = _firstJumpBackground.getSelectedColor().getRGB();
-        config._firstJumpForeground = _firstJumpForeground.getSelectedColor().getRGB();
-        config._secondJumpBackground = _secondJumpBackground.getSelectedColor().getRGB();
-        config._secondJumpForeground = _secondJumpForeground.getSelectedColor().getRGB();
-        config._panelBackground = _panelBackground.getSelectedColor().getRGB();
+        if (_firstJumpBackground.getSelectedColor() != null) {
+            config._firstJumpBackground = _firstJumpBackground.getSelectedColor().getRGB();
+        }
+        if (_firstJumpForeground.getSelectedColor() != null) {
+            config._firstJumpForeground = _firstJumpForeground.getSelectedColor().getRGB();
+        }
+        if (_secondJumpBackground.getSelectedColor() != null) {
+            config._secondJumpBackground = _secondJumpBackground.getSelectedColor().getRGB();
+        }
+        if (_secondJumpForeground.getSelectedColor() != null) {
+            config._secondJumpForeground = _secondJumpForeground.getSelectedColor().getRGB();
+        }
+        if (_panelBackground.getSelectedColor() != null) {
+            config._panelBackground = _panelBackground.getSelectedColor().getRGB();
+        }
         config._needSelectTextAfterJump = _needSelectTextAfterJump.isSelected();
         config._jumpBehind = _jumpBehind.isSelected();
         config._toUpperCase = _toUpperCase.isSelected();
         config._fontType = (String) _fontType.getSelectedItem();
-        config._bgOpacity =  _bgOpacity.getValue();
+        config._bgOpacity = _bgOpacity.getValue();
     }
 
     @Override

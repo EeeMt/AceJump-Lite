@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="63b59" layout-manager="GridLayoutManager" row-count="10" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="63b59" layout-manager="GridLayoutManager" row-count="10" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -18,14 +18,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="c56d8" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="First Jump Background: "/>
-            </properties>
-          </component>
           <component id="9ccf9" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -53,7 +45,7 @@
           <component id="a6e1f" class="com.intellij.ui.ColorPanel" binding="_firstJumpBackground">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="22"/>
+                <preferred-size width="126" height="22"/>
                 <maximum-size width="100" height="-1"/>
               </grid>
             </constraints>
@@ -62,7 +54,7 @@
           <component id="210be" class="com.intellij.ui.ColorPanel" binding="_firstJumpForeground">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="22"/>
+                <preferred-size width="126" height="22"/>
                 <maximum-size width="100" height="-1"/>
               </grid>
             </constraints>
@@ -71,7 +63,7 @@
           <component id="8f185" class="com.intellij.ui.ColorPanel" binding="_secondJumpBackground">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="22"/>
+                <preferred-size width="126" height="22"/>
                 <maximum-size width="100" height="-1"/>
               </grid>
             </constraints>
@@ -80,7 +72,7 @@
           <component id="fe7e7" class="com.intellij.ui.ColorPanel" binding="_secondJumpForeground">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="22"/>
+                <preferred-size width="126" height="22"/>
                 <maximum-size width="100" height="-1"/>
               </grid>
             </constraints>
@@ -98,7 +90,7 @@
           <component id="86d41" class="javax.swing.JCheckBox" binding="_needSelectTextAfterJump">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="24"/>
+                <preferred-size width="126" height="24"/>
               </grid>
             </constraints>
             <properties>
@@ -116,7 +108,7 @@
           <component id="87054" class="javax.swing.JCheckBox" binding="_jumpBehind">
             <constraints>
               <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="24"/>
+                <preferred-size width="126" height="24"/>
               </grid>
             </constraints>
             <properties>
@@ -134,7 +126,7 @@
           <component id="fda72" class="com.intellij.ui.ColorPanel" binding="_panelBackground">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="22"/>
+                <preferred-size width="126" height="22"/>
                 <maximum-size width="100" height="-1"/>
               </grid>
             </constraints>
@@ -151,7 +143,7 @@
           <component id="906e9" class="javax.swing.JCheckBox" binding="_toUpperCase">
             <constraints>
               <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="24"/>
+                <preferred-size width="126" height="24"/>
               </grid>
             </constraints>
             <properties>
@@ -171,23 +163,13 @@
               <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Label"/>
-            </properties>
-          </component>
-          <component id="c5570" class="javax.swing.JSlider" binding="_bgOpacity">
-            <constraints>
-              <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="187" height="16"/>
-              </grid>
-            </constraints>
-            <properties>
-              <maximum value="100"/>
+              <text value="Background Opacity"/>
             </properties>
           </component>
           <component id="561a6" class="javax.swing.JComboBox" binding="_fontType">
             <constraints>
               <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="50" height="27"/>
+                <preferred-size width="126" height="27"/>
               </grid>
             </constraints>
             <properties>
@@ -198,20 +180,48 @@
               </model>
             </properties>
           </component>
+          <component id="54626" class="javax.swing.JLabel" binding="_bgOpacityValue">
+            <constraints>
+              <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="30%"/>
+            </properties>
+          </component>
+          <component id="c5570" class="javax.swing.JSlider" binding="_bgOpacity">
+            <constraints>
+              <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="126" height="16"/>
+              </grid>
+            </constraints>
+            <properties>
+              <maximum value="100"/>
+              <orientation value="0"/>
+              <paintLabels value="false"/>
+              <value value="30"/>
+              <valueIsAdjusting value="false"/>
+            </properties>
+          </component>
+          <component id="c56d8" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="First Jump Background: "/>
+            </properties>
+          </component>
         </children>
       </grid>
-      <vspacer id="6924f">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="361" height="14"/>
-          </grid>
-        </constraints>
-      </vspacer>
       <hspacer id="bb312">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
+      <vspacer id="a49ff">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
     </children>
   </grid>
 </form>

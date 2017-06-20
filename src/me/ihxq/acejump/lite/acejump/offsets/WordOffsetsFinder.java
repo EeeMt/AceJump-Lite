@@ -18,11 +18,8 @@ public class WordOffsetsFinder extends OffsetsFinder {
         }
 
         char charAtOffset = visibleText.charAt(index);
-        if (Character.isUpperCase(charAtOffset) && Character.isLowerCase(charBeforeOffset)) {
-            return true;
-        }
+        return Character.isUpperCase(charAtOffset) && Character.isLowerCase(charBeforeOffset);
 
-        return false;
     }
 
     private boolean isCharInDifferentCategory(char c, char charBeforeOffset) {

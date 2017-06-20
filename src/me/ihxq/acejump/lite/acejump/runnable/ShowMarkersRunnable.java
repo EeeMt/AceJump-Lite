@@ -8,12 +8,11 @@ import me.ihxq.acejump.lite.acejump.marker.MarkerCollection;
 import me.ihxq.acejump.lite.acejump.marker.MarkersPanel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class ShowMarkersRunnable implements Runnable {
-    public static final char INFINITE_JUMP_CHAR = '/';
+    private static final char INFINITE_JUMP_CHAR = '/';
     private static final String MARKER_CHARSET = "asdfjeghiybcmnopqrtuvwkl";   //TODO: customizable
     private final List<JOffset> _offsets;
     private final AceJumpAction _action;
@@ -47,7 +46,7 @@ public class ShowMarkersRunnable implements Runnable {
             createMultipleJumpMarkers(singleJumpCount);
         }
 
-        ArrayList<MarkersPanel> panels = new ArrayList<MarkersPanel>();
+        ArrayList<MarkersPanel> panels = new ArrayList<>();
         for (Editor editor : _editors) {
             MarkersPanel markersPanel = new MarkersPanel(editor, _markerCollection);
             panels.add(markersPanel);
@@ -104,30 +103,27 @@ public class ShowMarkersRunnable implements Runnable {
     }
 
     private void sortOffsetsByDistanceToCaret(final int caretOffset) {
-        Collections.sort(_offsets, new Comparator<JOffset>() {
-            @Override
-            public int compare(JOffset joA, JOffset joB) {
-                if (joA.editor != joB.editor) {
-                    return joA.editor.hashCode() - joB.editor.hashCode();
-                }
-
-                Integer oA = joA.offset;
-                Integer oB = joB.offset;
-
-                int distA = Math.abs(oA - caretOffset);
-                int distB = Math.abs(oB - caretOffset);
-
-                if (distA == distB) {
-                    return oA - oB;
-                }
-
-                return distA - distB;
+        _offsets.sort((joA, joB) -> {
+            if (joA.editor != joB.editor) {
+                return joA.editor.hashCode() - joB.editor.hashCode();
             }
+
+            Integer oA = joA.offset;
+            Integer oB = joB.offset;
+
+            int distA = Math.abs(oA - caretOffset);
+            int distB = Math.abs(oB - caretOffset);
+
+            if (distA == distB) {
+                return oA - oB;
+            }
+
+            return distA - distB;
         });
     }
 
     private void sortOffsetsToImprovePriorityOfLineEnd() {
-        Collections.sort(_offsets, new Comparator<JOffset>() {
+        _offsets.sort(new Comparator<JOffset>() {
             @Override
             public int compare(JOffset joA, JOffset joB) {
                 if (joA.editor != joB.editor) {
@@ -138,7 +134,7 @@ public class ShowMarkersRunnable implements Runnable {
                 boolean oAIsLineEndOffset = isLineEndOffset(joA.offset, document);
                 boolean oBIsLineEndOffset = isLineEndOffset(joB.offset, document);
 
-                if (!(oAIsLineEndOffset ^ oBIsLineEndOffset)) {
+                if (oAIsLineEndOffset == oBIsLineEndOffset) {
                     return 0;
                 }
 

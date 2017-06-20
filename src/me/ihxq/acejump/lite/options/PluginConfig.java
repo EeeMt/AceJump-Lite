@@ -5,6 +5,7 @@ import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
+import com.intellij.ui.JBColor;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,39 +16,39 @@ import java.awt.*;
         storages = {
                 @Storage(
                         id = "other",
-                        file = "$APP_CONFIG$/emacsIDEAs_plugin.xml")
+                        file = "$APP_CONFIG$/AceJump-Lite.xml")
         }
 )
 public class PluginConfig implements PersistentStateComponent<PluginConfig> {
-    int _firstJumpBackground = Color.blue.getRGB();
-    int _firstJumpForeground = Color.white.getRGB();
-    int _secondJumpBackground = Color.red.getRGB();
-    int _secondJumpForeground = Color.white.getRGB();
+    int _firstJumpBackground = new JBColor(new Color(214, 71, 255), new Color(214, 71, 255)).getRGB();
+    int _firstJumpForeground = new JBColor(new Color(249, 255, 249), new Color(232, 232, 225)).getRGB();
+    int _secondJumpBackground = new JBColor(new Color(255, 249, 117), new Color(253, 255, 135)).getRGB();
+    int _secondJumpForeground = new JBColor(new Color(255, 248, 248), new Color(254, 253, 254)).getRGB();
     boolean _needSelectTextAfterJump = true;
     public boolean _jumpBehind = true;
-    int _panelBackground = Color.lightGray.getRGB();
+    int _panelBackground = new JBColor(new Color(111, 110, 110), new Color(144, 216, 224)).getRGB();
     public boolean _toUpperCase = true;
     public String _fontType = "Bold";
     public int _bgOpacity = 30;
 
     public Color getFirstJumpBackground() {
-        return new Color(_firstJumpBackground);
+        return new JBColor(new Color(_firstJumpBackground), new Color(_firstJumpBackground));
     }
 
     public Color getFirstJumpForeground() {
-        return new Color(_firstJumpForeground);
+        return new JBColor(new Color(_firstJumpForeground), new Color(_firstJumpForeground));
     }
 
     public Color getSecondJumpBackground() {
-        return new Color(_secondJumpBackground);
+        return new JBColor(new Color(_secondJumpBackground), new Color(_secondJumpBackground));
     }
 
     public Color getSecondJumpForeground() {
-        return new Color(_secondJumpForeground);
+        return new JBColor(new Color(_secondJumpForeground), new Color(_secondJumpForeground));
     }
 
     public Color getPanelBackground() {
-        return new Color(_panelBackground);
+        return new JBColor(new Color(_panelBackground), new Color(_panelBackground));
     }
 
     @Nullable
