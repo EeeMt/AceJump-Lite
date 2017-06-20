@@ -36,7 +36,8 @@ public class AceJumpAction extends EmacsIdeasAction {
     private boolean _isCalledFromOtherAction; //TODO
     private OffsetsFinder _offsetsFinder = new WordOffsetsFinder();
 
-    private AceJumpAction() {
+    @SuppressWarnings("WeakerAccess")
+    public AceJumpAction() {
         _instance = this;
     }
 
@@ -45,12 +46,11 @@ public class AceJumpAction extends EmacsIdeasAction {
         _isCalledFromOtherAction = true;
         this.actionPerformed(e);
 
-        ArrayList<Editor> editors = getEditors();
+        // show background on plugin activing
+        Editor editor = getEditor();// 或者getEditors()？
+        MarkersPanel markersPanel = new MarkersPanel(editor, getMarkerCollection());
         _markersPanels = new ArrayList<>();
-        for (Editor editor : _editors) {
-            MarkersPanel markersPanel = new MarkersPanel(editor, getMarkerCollection());
-            _markersPanels.add(markersPanel);
-        }
+        _markersPanels.add(markersPanel);
         showNewMarkersPanel(_markersPanels);
     }
 
