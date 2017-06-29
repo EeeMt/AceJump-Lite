@@ -1,20 +1,16 @@
 package me.ihxq.acejump.lite.acejump.command;
 
-import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.editor.Editor;
 import me.ihxq.acejump.lite.acejump.marker.JOffset;
-import me.ihxq.acejump.lite.options.PluginConfig;
 
 public class CommandAroundJump {
-    protected Editor _se; /*source editor*/
-    protected int _soff;
+    private Editor _se; /*source editor*/
+    private int _soff;
 
-    protected Editor _te; /*target editor*/
-    protected int _toff;
+    private Editor _te; /*target editor*/
+    private int _toff;
 
-    final PluginConfig _config = ServiceManager.getService(PluginConfig.class);
-
-    public CommandAroundJump(Editor editor) {
+    CommandAroundJump(Editor editor) {
         _se = editor;
     }
 
@@ -40,7 +36,7 @@ public class CommandAroundJump {
         _te.getCaretModel().moveToOffset(_toff);
     }
 
-    protected void selectJumpArea() {
+    void selectJumpArea() {
         if (inSameEditor()) {
             if (_soff < _toff)
                 _se.getSelectionModel().setSelection(_soff, _toff);
@@ -49,7 +45,7 @@ public class CommandAroundJump {
         }
     }
 
-    public boolean inSameEditor() {
+    private boolean inSameEditor() {
         return _se == _te;
     }
 }

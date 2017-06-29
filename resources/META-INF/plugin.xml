@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>me.ihxq.acejump.lite</id>
   <name>AceJump-Lite</name>
-  <version>1.0</version>
+  <version>1.0b</version>
   <vendor email="hxqfor@live.com" url="http:/www.ihxq.me">Blog</vendor>
 
   <description><![CDATA[
@@ -37,10 +37,10 @@
 
       </action>
       <action id="emacsIDEAs.AceJump" class="me.ihxq.acejump.lite.acejump.AceJumpCharAction" text="AceJumpChar" description="AceJumpChar" >
-        <keyboard-shortcut keymap="$default" first-keystroke="alt F" />
+        <keyboard-shortcut keymap="$default" first-keystroke="alt m" />
       </action>
       <action id="emacsIDEAs.AceJumpSelect" class="me.ihxq.acejump.lite.acejump.AceJumpSelectAction" text="AceJumpSelect" description="AceJumpSelect" >
-        <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke="meta I"/>
+        <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke=""/>
       </action>
     </group>
 
@@ -49,7 +49,7 @@
     <action id="JustOneSpace" class="me.ihxq.acejump.lite.buildin.JustOneSpace" text="JustOneSpace"
             description="me.ihxq.acejump.lite.highlightsymbol.HighlightPrevSymbolAction">
       <add-to-group group-id="emacsIDEAs" anchor="last"/>
-      <keyboard-shortcut keymap="$default" first-keystroke="meta ctrl SPACE" />
+      <keyboard-shortcut keymap="$default" first-keystroke="meta X" />
     </action>
 
   </actions>

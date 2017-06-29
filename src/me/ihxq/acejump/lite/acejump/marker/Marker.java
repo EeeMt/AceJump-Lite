@@ -11,7 +11,7 @@ public class Marker {
         addOffsetToMarker(offset);
     }
 
-    public void addOffsetToMarker(JOffset offset) {
+    void addOffsetToMarker(JOffset offset) {
         _offsets.add(offset);
     }
 
@@ -19,7 +19,7 @@ public class Marker {
         return _offsets;
     }
 
-    public char getMarkerChar() {
+    char getMarkerChar() {
         return _marker.charAt(0);
     }
 
@@ -35,7 +35,7 @@ public class Marker {
         return _offsets.get(0);
     }
 
-    public boolean isMappingToMultipleOffset() {
+    boolean isMappingToMultipleOffset() {
         return _offsets.size() > 1;
     }
 }

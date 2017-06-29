@@ -20,13 +20,13 @@ import java.awt.*;
         }
 )
 public class PluginConfig implements PersistentStateComponent<PluginConfig> {
-    int _firstJumpBackground = new JBColor(new Color(214, 71, 255), new Color(214, 71, 255)).getRGB();
+    int _firstJumpBackground = new JBColor(new Color(214, 71, 255), new Color(237, 66, 124)).getRGB();
     int _firstJumpForeground = new JBColor(new Color(249, 255, 249), new Color(232, 232, 225)).getRGB();
-    int _secondJumpBackground = new JBColor(new Color(255, 249, 117), new Color(253, 255, 135)).getRGB();
+    int _secondJumpBackground = new JBColor(new Color(255, 149, 0), new Color(253, 149, 0)).getRGB();
     int _secondJumpForeground = new JBColor(new Color(255, 248, 248), new Color(254, 253, 254)).getRGB();
     boolean _needSelectTextAfterJump = true;
     public boolean _jumpBehind = true;
-    int _panelBackground = new JBColor(new Color(111, 110, 110), new Color(144, 216, 224)).getRGB();
+    int _panelBackground = new JBColor(new Color(111, 110, 110), new Color(71, 71, 73)).getRGB();
     public boolean _toUpperCase = true;
     public String _fontType = "Bold";
     public int _bgOpacity = 30;

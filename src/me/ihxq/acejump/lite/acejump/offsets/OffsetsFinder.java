@@ -1,8 +1,10 @@
 package me.ihxq.acejump.lite.acejump.offsets;
 
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.util.TextRange;
+import me.ihxq.acejump.lite.options.PluginConfig;
 import me.ihxq.acejump.lite.util.EditorUtils;
 
 import java.awt.event.KeyEvent;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OffsetsFinder {
+    private final PluginConfig _config = ServiceManager.getService(PluginConfig.class);
+
     public List<Integer> getOffsets(char key, Editor editor, Editor selectedEditor) {
         Document document = editor.getDocument();
         TextRange visibleRange = EditorUtils.getVisibleTextRange(editor);
@@ -34,7 +38,7 @@ public class OffsetsFinder {
         }
     }
 
-    protected ArrayList<Integer> getOffsetsOfCharIgnoreCase(String charSet, TextRange markerRange, Document document, Editor editor, Editor selectedEditor) {
+    private ArrayList<Integer> getOffsetsOfCharIgnoreCase(String charSet, TextRange markerRange, Document document, Editor editor, Editor selectedEditor) {
         ArrayList<Integer> offsets = new ArrayList<Integer>();
         String visibleText = document.getText(markerRange);
 
@@ -61,7 +65,14 @@ public class OffsetsFinder {
             int offset = startOffset + index;
 
             if (isValidOffset(c, visibleText, index, offset, caretOffset)) {
-                if (editor != selectedEditor || offset != caretOffset)
+                // check if current position is the input char
+                boolean currentPosition;
+                if (_config._jumpBehind) {
+                    currentPosition = offset != caretOffset - 1;
+                } else {
+                    currentPosition = offset != caretOffset;
+                }
+                if (editor != selectedEditor || currentPosition)
                     offsets.add(offset);
             }
 

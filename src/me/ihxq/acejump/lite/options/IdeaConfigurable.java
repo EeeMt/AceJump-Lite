@@ -8,6 +8,8 @@ import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class IdeaConfigurable implements Configurable {
     private JPanel _optionsPanel;
@@ -25,6 +27,8 @@ public class IdeaConfigurable implements Configurable {
     private JTextField _markersCharsets;
 
     private final PluginConfig config = ServiceManager.getService(PluginConfig.class);
+
+    private Logger logger = Logger.getLogger("df");
 
     @Nls
     @Override
@@ -55,15 +59,14 @@ public class IdeaConfigurable implements Configurable {
     @Nullable
     @Override
     public JComponent createComponent() {
+        logger.log(Level.INFO, "createComponent");
         setFromConfig();
         return _optionsPanel;
     }
 
     @Override
     public boolean isModified() {
-        System.out.println(_fontType.getSelectedItem());
-        System.out.println(_bgOpacity.getValue());
-        System.out.println(_bgOpacity.getChangeListeners().length);
+        logger.log(Level.INFO, "check modify");
         _bgOpacityValue.setText(_bgOpacity.getValue() + "%");
         return _firstJumpBackground.getSelectedColor() != config.getFirstJumpBackground()
                 || _firstJumpForeground.getSelectedColor() != config.getFirstJumpForeground()
@@ -80,6 +83,8 @@ public class IdeaConfigurable implements Configurable {
 
     @Override
     public void apply() throws ConfigurationException {
+        logger.log(Level.INFO, "apply options");
+
         if (!isModified()) {
             return;
         }
@@ -108,6 +113,7 @@ public class IdeaConfigurable implements Configurable {
 
     @Override
     public void reset() {
+        logger.log(Level.INFO, "option reset");
         setFromConfig();
     }
 
