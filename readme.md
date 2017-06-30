@@ -2,7 +2,17 @@
 
 Simplify from [`emacsIDEAs`](https://github.com/whunmr/emacsIDEAs) and add some custom options.
 
+![Snapshot](snapshot.png)
+
 ----
+- can choose move caret behind the target char or before 
+- painting background on plugin active 
+- display markers by upper case 
+- custom markers
+- background color and opacity
+- font style: bold/plain  
+
+---
 
 - 增加光标移动到目标字符后面的选项
 - 激活插件就渲染背景，增加反馈，提高体验

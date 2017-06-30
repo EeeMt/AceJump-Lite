@@ -1,62 +1,63 @@
 <idea-plugin>
-  <id>me.ihxq.acejump.lite</id>
-  <name>AceJump-Lite</name>
-  <version>1.0b</version>
-  <vendor email="hxqfor@live.com" url="http:/www.ihxq.me">Blog</vendor>
+    <id>me.ihxq.acejump.lite</id>
+    <name>AceJump-Lite</name>
+    <version>1.0b</version>
+    <vendor email="hxqfor@live.com" url="http:/www.ihxq.me">Blog</vendor>
 
-  <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+    <description><![CDATA[
+      Press <em>ALT + M</em> (default hot key) to active AceJumpChar<br>
+      Press <em>ALT + M</em> twice to active AceJumpWord<br>
     ]]></description>
 
-  <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
-    ]]>
-  </change-notes>
+    <!--<change-notes><![CDATA[-->l
+      <!--Add change notes here.<br>-->
+      <!--<em>most HTML tags may be used</em>-->
+    <!--]]>-->
+    <!--</change-notes>-->
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="145.0"/>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="145.0"/>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <!-- Add your extensions here -->
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
 
-  <actions>
-    <group id="emacsIDEAs" text="emacsIDEAs" description="emacsIDEAs">
-      <!--<add-to-group group-id="MainMenu" anchor="last"  />-->
-      <action id="emacsIDEAs.AceJumpWord" class="me.ihxq.acejump.lite.acejump.AceJumpAction" text="AceJumpWord" description="AceJumpWord" >
-        <keyboard-shortcut keymap="$default" first-keystroke="meta L" />
-        <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke="meta F"/>
+    <actions>
+        <group id="emacsIDEAs" text="emacsIDEAs" description="emacsIDEAs">
+            <!--<add-to-group group-id="MainMenu" anchor="last"  />-->
+            <action id="emacsIDEAs.AceJumpWord" class="me.ihxq.acejump.lite.acejump.AceJumpAction" text="AceJumpWord"
+                    description="AceJumpWord">
+            </action>
 
-      </action>
-      <action id="emacsIDEAs.AceJump" class="me.ihxq.acejump.lite.acejump.AceJumpCharAction" text="AceJumpChar" description="AceJumpChar" >
-        <keyboard-shortcut keymap="$default" first-keystroke="alt m" />
-      </action>
-      <action id="emacsIDEAs.AceJumpSelect" class="me.ihxq.acejump.lite.acejump.AceJumpSelectAction" text="AceJumpSelect" description="AceJumpSelect" >
-        <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke=""/>
-      </action>
-    </group>
+            <action id="emacsIDEAs.AceJump" class="me.ihxq.acejump.lite.acejump.AceJumpCharAction" text="AceJumpChar"
+                    description="AceJumpChar">
+                <keyboard-shortcut keymap="$default" first-keystroke="alt m"/>
+            </action>
+
+            <action id="emacsIDEAs.AceJumpSelect" class="me.ihxq.acejump.lite.acejump.AceJumpSelectAction"
+                    text="AceJumpSelect" description="AceJumpSelect">
+                <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke=""/>
+            </action>
+        </group>
 
 
+        <action id="JustOneSpace" class="me.ihxq.acejump.lite.buildin.JustOneSpace" text="JustOneSpace"
+                description="me.ihxq.acejump.lite.highlightsymbol.HighlightPrevSymbolAction">
+            <add-to-group group-id="emacsIDEAs" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta X"/>
+        </action>
 
-    <action id="JustOneSpace" class="me.ihxq.acejump.lite.buildin.JustOneSpace" text="JustOneSpace"
-            description="me.ihxq.acejump.lite.highlightsymbol.HighlightPrevSymbolAction">
-      <add-to-group group-id="emacsIDEAs" anchor="last"/>
-      <keyboard-shortcut keymap="$default" first-keystroke="meta X" />
-    </action>
+    </actions>
 
-  </actions>
-
-  <extensions defaultExtensionNs="com.intellij">
-    <applicationService serviceImplementation="me.ihxq.acejump.lite.options.PluginConfig"/>
-    <applicationConfigurable instance="me.ihxq.acejump.lite.options.IdeaConfigurable"/>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="me.ihxq.acejump.lite.options.PluginConfig"/>
+        <applicationConfigurable instance="me.ihxq.acejump.lite.options.IdeaConfigurable"/>
+    </extensions>
 
 </idea-plugin>
