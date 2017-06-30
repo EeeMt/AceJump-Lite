@@ -21,3 +21,5 @@ Simplify from [`emacsIDEAs`](https://github.com/whunmr/emacsIDEAs) and add some 
 - 增加背景颜色和透明度自定义
 - 增加字体样式选项，可以选择粗体或者常规
 
+  *[JetBrains Plugin Repository](https://plugins.jetbrains.com/plugin/9803-acejump-lite)*
+
