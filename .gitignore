@@ -166,3 +166,4 @@ local.properties
 .scala_dependencies
 .worksheet
 .idea
+!/AceJump_Lite_jar/AceJump-Lite.jar
