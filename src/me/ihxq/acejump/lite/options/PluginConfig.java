@@ -15,7 +15,6 @@ import java.awt.*;
         name = "emacsIDEAsPluginConfig",
         storages = {
                 @Storage(
-                        id = "other",
                         file = "$APP_CONFIG$/AceJump-Lite.xml")
         }
 )

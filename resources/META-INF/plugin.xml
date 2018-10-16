@@ -10,8 +10,8 @@
     ]]></description>
 
     <!--<change-notes><![CDATA[-->l
-      <!--Add change notes here.<br>-->
-      <!--<em>most HTML tags may be used</em>-->
+    <!--Add change notes here.<br>-->
+    <!--<em>most HTML tags may be used</em>-->
     <!--]]>-->
     <!--</change-notes>-->
 
@@ -39,14 +39,13 @@
                     text="AceJumpSelect" description="AceJumpSelect">
                 <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke=""/>
             </action>
+
+
+            <action id="emacsIDEAs.JustOneSpace" class="me.ihxq.acejump.lite.buildin.JustOneSpace" text="JustOneSpace"
+                    description="me.ihxq.acejump.lite.highlightsymbol.HighlightPrevSymbolAction">
+                <keyboard-shortcut keymap="$default" first-keystroke="meta X"/>
+            </action>
         </group>
-
-
-        <action id="JustOneSpace" class="me.ihxq.acejump.lite.buildin.JustOneSpace" text="JustOneSpace"
-                description="me.ihxq.acejump.lite.highlightsymbol.HighlightPrevSymbolAction">
-            <add-to-group group-id="emacsIDEAs" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="meta X"/>
-        </action>
 
     </actions>
 
