@@ -37,7 +37,7 @@
 
             <action id="emacsIDEAs.AceJumpSelect" class="me.ihxq.acejump.lite.acejump.AceJumpSelectAction"
                     text="AceJumpSelect" description="AceJumpSelect">
-                <keyboard-shortcut keymap="$default" first-keystroke="meta I" second-keystroke=""/>
+                <keyboard-shortcut keymap="$default" first-keystroke="meta I"/>
             </action>
 
 
