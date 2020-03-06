@@ -21,7 +21,7 @@ public class IdeaConfigurable implements Configurable {
     private JCheckBox _jumpBehind;
     private ColorPanel _panelBackground;
     private JCheckBox _toUpperCase;
-    private JComboBox _fontType;
+    private JComboBox<?> _fontType;
     private JSlider _bgOpacity;
     private JLabel _bgOpacityValue;
     private JTextField _markersCharsets;

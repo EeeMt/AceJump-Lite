@@ -1,30 +1,27 @@
 <idea-plugin>
     <id>me.ihxq.acejump.lite</id>
     <name>AceJump-Lite</name>
-    <version>1.1</version>
-    <vendor email="hxqfor@live.com" url="http:/www.ihxq.me">Blog</vendor>
+    <version>1.2</version>
+    <vendor email="hxq@live.com" url="http:/www.ihxq.me">xiquan huang</vendor>
 
     <description><![CDATA[
       Press <em>ALT + M</em> (default hot key) to active AceJumpChar<br>
       Press <em>ALT + M</em> twice to active AceJumpWord<br>
     ]]></description>
 
-    <!--<change-notes><![CDATA[-->l
-    <!--Add change notes here.<br>-->
-    <!--<em>most HTML tags may be used</em>-->
-    <!--]]>-->
-    <!--</change-notes>-->
+    <change-notes><![CDATA[
+        <em>1.2</em>
+        - fix error;
+        - adjust some naming;
+        - other optimization;
+    ]]></change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="107.105"/>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products -->
     <depends>com.intellij.modules.lang</depends>
 
     <actions>
-        <group id="emacsIDEAs" text="emacsIDEAs" description="emacsIDEAs">
+        <group id="emacsIDEAs" text="EmacsIDEAs" description="EmacsIDEAs">
             <!--<add-to-group group-id="MainMenu" anchor="last"  />-->
             <action id="emacsIDEAs.AceJumpWord" class="me.ihxq.acejump.lite.acejump.AceJumpAction" text="AceJumpWord"
                     description="AceJumpWord">
@@ -40,9 +37,8 @@
                 <keyboard-shortcut keymap="$default" first-keystroke="meta I"/>
             </action>
 
-
             <action id="emacsIDEAs.JustOneSpace" class="me.ihxq.acejump.lite.buildin.JustOneSpace" text="JustOneSpace"
-                    description="me.ihxq.acejump.lite.highlightsymbol.HighlightPrevSymbolAction">
+                    description="JustOneSpace">
                 <keyboard-shortcut keymap="$default" first-keystroke="meta X"/>
             </action>
         </group>

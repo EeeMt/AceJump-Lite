@@ -18,9 +18,9 @@ public class EditorUtils {
 
         LogicalPosition startLogicalPosition = editor.xyToLogicalPosition(visibleArea.getLocation());
 
-        Double endVisualX = visibleArea.getX() + visibleArea.getWidth();
-        Double endVisualY = visibleArea.getY() + visibleArea.getHeight();
-        LogicalPosition endLogicalPosition = editor.xyToLogicalPosition(new Point(endVisualX.intValue(), endVisualY.intValue()));
+        double endVisualX = visibleArea.getX() + visibleArea.getWidth();
+        double endVisualY = visibleArea.getY() + visibleArea.getHeight();
+        LogicalPosition endLogicalPosition = editor.xyToLogicalPosition(new Point((int) endVisualX, (int) endVisualY));
 
         return new TextRange(editor.logicalPositionToOffset(startLogicalPosition), editor.logicalPositionToOffset(endLogicalPosition));
     }

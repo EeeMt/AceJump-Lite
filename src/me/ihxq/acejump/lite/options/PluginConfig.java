@@ -7,15 +7,16 @@ import com.intellij.openapi.components.Storage;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.JBColor;
 import com.intellij.util.xmlb.XmlSerializerUtil;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 
 @State(
-        name = "emacsIDEAsPluginConfig",
+        name = "AceJump-LitePluginConfig",
         storages = {
                 @Storage(
-                        file = "$APP_CONFIG$/AceJump-Lite.xml")
+                        value = "$APP_CONFIG$/AceJump-Lite.xml")
         }
 )
 public class PluginConfig implements PersistentStateComponent<PluginConfig> {
@@ -29,6 +30,7 @@ public class PluginConfig implements PersistentStateComponent<PluginConfig> {
     public boolean _toUpperCase = true;
     public String _fontType = "Bold";
     public int _bgOpacity = 30;
+    @SuppressWarnings("SpellCheckingInspection")
     public String _markersCharsets = "asdfjeghiybcmnopqrtuvwkl";
 
     public Color getFirstJumpBackground() {
@@ -58,7 +60,7 @@ public class PluginConfig implements PersistentStateComponent<PluginConfig> {
     }
 
     @Override
-    public void loadState(PluginConfig config) {
+    public void loadState(@NotNull PluginConfig config) {
         XmlSerializerUtil.copyBean(config, this);
     }
 
